@@ -1,0 +1,47 @@
+{
+  "name": "koa-restful-structure",
+  "version": "0.0.1",
+  "description": "a koa structure",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint --fix **/*.js",
+    "start": "cross-env NODE_ENV=dev node bin/www",
+    "serve": "cross-env NODE_ENV=dev nodemon bin/www",
+    "test": "pm2 start ./pm2.config.js --only test",
+    "pre": "pm2 start ./pm2.config.js --only pre",
+    "prod": "pm2 start ./pm2.config.js --only prod"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@koa/bodyparser": "^5.0.0",
+    "@koa/cors": "^4.0.0",
+    "@koa/router": "^12.0.0",
+    "@prisma/client": "^5.3.1",
+    "axios": "^1.5.0",
+    "debug": "^4.3.4",
+    "http-proxy-middleware": "^2.0.6",
+    "jsonwebtoken": "^9.0.2",
+    "koa": "^2.14.2",
+    "koa-json": "^2.0.2",
+    "koa-jwt": "^4.0.4",
+    "koa-onerror": "^4.2.0",
+    "koa-session": "^6.4.0",
+    "koa-static": "^5.0.0",
+    "log4js": "^6.9.1",
+    "mysql": "^2.18.1",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.11",
+    "@babel/preset-env": "^7.22.14",
+    "@babel/register": "^7.22.5",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.48.0",
+    "eslint-config-prettier": "^8.10.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "nodemon": "^3.0.1",
+    "prettier": "^2.8.8",
+    "prisma": "^4.16.2"
+  }
+}

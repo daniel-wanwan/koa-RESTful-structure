@@ -1,0 +1,65 @@
+#!/usr/bin/env node
+
+// 使用Babel进行代码转译
+require("@babel/register")({
+    presets: ["@babel/preset-env"],
+})
+
+const http = require("http")
+const os = require("os")
+
+// 导入应用程序
+var app = require("../src/app")
+
+// 打印命令行参数
+console.log("process.argv", JSON.stringify(process.argv))
+
+// 设置监听端口
+const port = process.env.PORT || 7788
+
+// 创建HTTP服务器
+const server = http.createServer(app.callback())
+
+// 开始监听端口
+server.listen(port)
+// 添加错误处理和监听处理函数
+server.on("error", onError)
+server.on("listening", onListening)
+
+function onError(error) {
+    if (error.syscall !== "listen") {
+        throw error
+    }
+
+    const bind = typeof port === "string" ? `Pipe ${port}` : `Port ${port}`
+
+    const errorMessages = {
+        EACCES: `${bind} 需要提升权限`,
+        EADDRINUSE: `${bind} 已经在使用中`,
+    }
+
+    console.error(errorMessages[error.code] || error.message)
+
+    if (errorMessages[error.code]) {
+        process.exit(1)
+    } else {
+        throw error
+    }
+}
+
+function onListening() {
+    // 如果环境变量NODE_ENV设置为"dev"，则打印本地和网络URL
+    if (process.env.NODE_ENV === "dev") {
+        console.log(`> Local:    http://localhost:${port}/`)
+
+        const networkInterfaces = os.networkInterfaces()
+
+        for (const key of Object.keys(networkInterfaces)) {
+            for (const iface of networkInterfaces[key]) {
+                if (iface.family === "IPv4" && !iface.internal) {
+                    console.log(`> Network:  http://${iface.address}:${port}/`)
+                }
+            }
+        }
+    }
+}
