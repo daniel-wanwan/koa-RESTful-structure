@@ -64,7 +64,7 @@ class usersController {
                     path: "/user",
                     children: [
                         {
-                            path: "/user/userMgt",
+                            path: "/user/userList",
                             name: "用户列表",
                             icon: "User",
                         },

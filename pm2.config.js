@@ -28,6 +28,7 @@ module.exports = {
             script: "./bin/www",
             cwd: "./",
             watch: false, // 默认关闭watch 可替换为 ['src']
+            instance_var: "INSTANCE_ID",
             ignore_watch: ["node_modules", "build", "logs"],
             log_date_format: "YYYY-MM-DD HH:mm:ss.SSS",
             out_file: "./logs/out.log", // 日志输出
@@ -50,6 +51,7 @@ module.exports = {
             script: "./bin/www",
             cwd: "./",
             watch: false, // 默认关闭watch 可替换为 ['src']
+            instance_var: "INSTANCE_ID",
             ignore_watch: ["node_modules", "build", "logs"],
             log_date_format: "YYYY-MM-DD HH:mm:ss.SSS",
             out_file: "./logs/out.log", // 日志输出
